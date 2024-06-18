@@ -1,0 +1,47 @@
+import socios.*
+import viajes.*
+
+describe "Test de clase de Roque"{
+	
+	const viajeDePlaya1 = new ViajeDePlaya(idiomas = #{"Español","Aleman","Ingles"},largoPlaya = 1000)
+	const viajeDePlaya2 = new ViajeDePlaya(idiomas = #{"Español","Aleman","Ingles"},largoPlaya = 2000)
+	
+	const roque = new SocioTranquilo(actRealizadas = [viajeDePlaya1,viajeDePlaya2], maximoDeAct = 2,edad = 21,idiomasQueHabla = "Español")
+	
+	test "Roque debe ser adorador del sol "{
+		
+		assert.that(roque.adoradorSol())
+	}
+	
+	test "Las actividades que implican esfuerzo debe ser la de viaje de playa 2"{
+		
+		assert.equals([viajeDePlaya2],roque.actEsforzadas())
+		
+	}
+}
+
+describe "Test de clase de Ana"{
+	
+	const viajeDePlaya1 = new ViajeDePlaya(idiomas = #{"Español","Aleman","Ingles"},largoPlaya = 1000)
+	const viajeDePlaya2 = new ViajeDePlaya(idiomas = #{"Español","Aleman","Ingles"},largoPlaya = 2000)
+	const claseDeGimnasia1 = new ClaseDeGimnasia(idiomas = #{"Español"})
+	
+	const ana = new SocioCoherente(actRealizadas= [viajeDePlaya1,viajeDePlaya2,claseDeGimnasia1], maximoDeAct = 3,edad = 30,idiomasQueHabla = #{"Ingles"})
+
+	const sobreHeroesYTumbas = new Libro(idioma="Español",cantPaginas=544,nombreDelAutor="Sabato")
+	const ficciones = new Libro(idioma="Español",cantPaginas=222, nombreDelAutor="Borges")
+	
+	const tallerLiterario = new TallerLiterario(librosEnQueTrabaja=#{sobreHeroesYTumbas,ficciones})
+	
+	
+	test "Ana debe ser adorador del sol "{
+		
+		assert.notThat(ana.adoradorSol())
+	}
+	
+	test "Las actividades que implican esfuerzo debe ser la de viaje de playa 2"{
+		
+		assert.equals([viajeDePlaya2,claseDeGimnasia1],ana.actEsforzadas())
+		
+	}
+}
